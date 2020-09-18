@@ -28,6 +28,10 @@ mongoose
 		console.log("connected to database");
 	});
 
+app.use("/", (req, res, next) => {
+	console.log(req.body);
+	next();
+});
 //! middlwares
 app.use(morgan("dev"));
 app.use(bodyParser.json());

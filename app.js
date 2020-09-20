@@ -12,6 +12,8 @@ const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/product");
+const braintreeRoutes = require("./routes/braintree");
+// const orderRoutes = require('./routes/order');
 
 //! app init
 const app = express();
@@ -28,10 +30,6 @@ mongoose
 		console.log("connected to database");
 	});
 
-app.use("/", (req, res, next) => {
-	console.log(req.body);
-	next();
-});
 //! middlwares
 app.use(morgan("dev"));
 app.use(bodyParser.json());
@@ -44,6 +42,8 @@ app.use("/api", authRoutes);
 app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
+app.use("/api", braintreeRoutes);
+// app.use('/api', orderRoutes);
 
 app.listen(port, () => {
 	console.log(`Server listening on http://localhost:${port} ...`);
